@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signup.css">
+    <title>fv-signup-page</title>
+</head>
+<body>
+    <div class="box">
+		<form name="signup" autocomplete="off" onsubmit="return validate()">
+			<h2>Sign up</h2>
+			<div class="inputBox">
+				<input type="text" name="uname" required="required">
+				<span id="username">Username</span>
+				<i></i>
+			</div>
+            <div class="inputBox">
+				<input type="email" name="emails" required="required">
+				<span id="emailid">Institution's Email</span>
+				<i></i>
+			</div>
+            <div class="inputBox">
+				<input type="number" min="1" max="5" name="yearos" required="required">
+				<span id="yos">Year of Study</span>
+				<i></i>
+			</div>
+			<div class="inputBox">
+				<input type="password" name="pass" required="required">
+				<span id="password">Password</span>
+				<i></i>
+			</div>
+            <div class="inputBox">
+				<input type="password" name="cpass" required="required">
+				<span id="cpassword">Confirm Password</span>
+				<i></i>
+			</div>
+
+
+			<div class="links">
+				
+				<a href="fv-login.html">Sign in</a>
+			</div>
+			<input type="submit" value="Create" onclick="fetchdetails();">
+		</form>
+	</div>
+
+	<script>
+		var uname;
+		var pass;
+		var cpass;
+		var em;
+		var years;
+		function validate() {
+				uname = document.signup.uname.value;
+
+				if (uname.length<2 || uname.length>20) {
+					document.getElementById("username").innerHTML='** username should be between 2 to 20 char';
+					return false;
+				}
+			
+		
+				pass=document.signup.pass.value;
+				cpass=document.signup.cpass.value;
+				if (pass.length < 6) {
+					document.getElementById("password").innerHTML='** Password must be atleast 6 char long';
+					return false;
+				}
+
+				if (pass!=cpass) {
+					document.getElementById("cpassword").innerHTML="** passwords not matching";
+					return false;
+				}
+
+				
+				em=document.signup.emails.value;
+				if (em.indexof("@")==0) {
+					document.getElementById("emailid").innerHTML="** @ invalid position";
+					return false;
+				}
+				if (em.charAt(em.length-4)!="." && em.charAt(em.length-3)!="." ) {
+					document.getElementById("emailid").innerHTML="** '.' invalid position";
+					return false;
+				}
+			}
+	</script>
+</body>
+</html>
